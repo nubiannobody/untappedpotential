@@ -99,45 +99,36 @@ const VibeVault = () => {
   const currentMonth = monthNames[new Date().getMonth()];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-50 to-blue-100 relative overflow-hidden">
-      {/* Animated background sparkles */}
-      <div className="absolute inset-0 pointer-events-none">
-        {[...Array(25)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute text-pink-400"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `sparkle ${2 + Math.random() * 3}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 3}s`,
-              fontSize: `${12 + Math.random() * 8}px`
-            }}
-          >
-            ⭐
-          </div>
-        ))}
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={`twinkle-${i}`}
-            className="absolute text-purple-400"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `twinkle ${1.5 + Math.random() * 2}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 2}s`,
-              fontSize: `${8 + Math.random() * 6}px`
-            }}
-          >
-            ✨
-          </div>
-        ))}
+    <div className="absolute inset-0 pointer-events-auto z-0 min-h-screen relative overflow-hidden animated-bg">
+      {/* Enhanced animated background emojis */}
+<div className="absolute inset-0 pointer-events-auto z-0">
+  {[...Array(100)].map((_, i) => {
+    const emojis = ['💜', '🩵', '🥳', '💖', '🌸', '🦋', '🧡', '💛', '☺️', '🦄', '🫶🏾'];
+    const colors = ['#fbcfe8', '#e9d5ff', '#d1fae5', '#fef9c3', '#fde68a', '#fcd34d', '#a5f3fc', '#c4b5fd'];
+    return (
+      <div
+        key={i}
+        className="absolute"
+        style={{
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          animation: `sparkle ${2 + Math.random() * 5}s ease-in-out infinite`,
+          animationDelay: `${Math.random() * 4}s`,
+          fontSize: `${10 + Math.random() * 14}px`,
+          opacity: 0.4 + Math.random() * 0.6,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        }}
+      >
+        {emojis[Math.floor(Math.random() * emojis.length)]}
       </div>
+    );
+  })}
+</div>
 
       {/* Confetti Animation */}
       {showConfetti && (
-        <div className="fixed inset-0 pointer-events-none z-50">
-          {[...Array(30)].map((_, i) => (
+        <div className="fixed inset-0 pointer-events-auto z-50">
+          {[...Array(100)].map((_, i) => (
             <div
               key={i}
               className="absolute animate-bounce text-2xl"
@@ -148,7 +139,8 @@ const VibeVault = () => {
                 animationDuration: '2s'
               }}
             >
-              {['💖', '✨', '🌟', '💕', '🦄', '🌈'][Math.floor(Math.random() * 6)]}
+              {['🥳', '🎉', '🩵', '🎊'][Math.floor(Math.random() * 6)]}
+              {/*{['💖', '✨', '🌟', '💕', '🦄', '🌈'][Math.floor(Math.random() * 6)]}*/}
             </div>
           ))}
         </div>
@@ -157,7 +149,7 @@ const VibeVault = () => {
       <div className="relative z-10">
         {/* Header with neon title */}
         <header className="text-center py-8 relative">
-          <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+          <div className="absolute inset-0 flex justify-center items-center pointer-events-auto">
             {[...Array(15)].map((_, i) => (
               <Sparkles
                 key={i}
