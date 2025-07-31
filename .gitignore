@@ -11,3 +11,6 @@ Thumbs.db
 .next/
 dist/
 out/
+
+# Local Netlify folder
+.netlify
