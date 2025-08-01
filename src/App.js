@@ -129,7 +129,7 @@ const BubblegumBytes = () => {
             date: selectedDate,
             mood: selectedMood,
             text: currentEntry
-          }]);
+          }], {onConflict: ['date']});
 
         if (error) {
           console.error('Supabase error:', error.message);
