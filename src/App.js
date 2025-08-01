@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Heart, Star, Sparkles, Save, Edit3, X, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
+import { getUserId } from './getUserId';
 
 // Mock Supabase client for artifact environment
 const supabase = {
@@ -74,8 +75,12 @@ const BubblegumBytes = () => {
   // Load entries from Supabase
   useEffect(() => {
     const fetchEntries = async () => {
+    const userId = getUserId();
       try {
-        const { data, error } = await supabase.from('entries').select('*');
+        const { data, error } = await supabase.from('entries')
+        .select('*')
+        .eq('user_id', userId);
+
         if (error) {
           console.error('Fetch error:', error.message);
         } else {
@@ -110,10 +115,13 @@ const BubblegumBytes = () => {
   const saveEntry = async () => {
     if (currentEntry.trim() || selectedMood) {
       // Save to local state first
+      const userId = getUserId();
+
       const newEntry = {
         text: currentEntry,
         mood: selectedMood,
-        date: selectedDate
+        date: selectedDate,
+        user_id: userId
       };
 
       setEntries(prev => ({
@@ -125,11 +133,7 @@ const BubblegumBytes = () => {
       try {
         const { error } = await supabase
           .from('entries')
-          .upsert([{
-            date: selectedDate,
-            mood: selectedMood,
-            text: currentEntry
-          }], {onConflict: ['date']});
+          .upsert([newEntry], { onConflict: ['user_id', 'date'] });
 
         if (error) {
           console.error('Supabase error:', error.message);
@@ -234,7 +238,7 @@ const BubblegumBytes = () => {
       <div className="absolute inset-0 pointer-events-auto z-0 min-h-screen relative overflow-hidden animated-bg">
         {/* Enhanced animated background emojis */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          {[...Array(200)].map((_, i) => {
+          {[...Array(100)].map((_, i) => {
             const emojis = ['💜', '🩵', '🥳', '💖', '🌸', '🍬', '🦋', '🧡', '💛', '☺️', '🦄', '💚', '🫧', '🍭'];
             const colors = ['#fbcfe8', '#e9d5ff', '#d1fae5', '#fef9c3', '#fde68a', '#fcd34d', '#a5f3fc', '#c4b5fd'];
             return (
