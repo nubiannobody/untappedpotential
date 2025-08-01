@@ -21,7 +21,7 @@ const supabase = {
   })
 };
 
-const VibeVault = () => {
+const BubblegumBytes = () => {
   const [currentEntry, setCurrentEntry] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [entries, setEntries] = useState({});
@@ -234,8 +234,8 @@ const VibeVault = () => {
       <div className="absolute inset-0 pointer-events-auto z-0 min-h-screen relative overflow-hidden animated-bg">
         {/* Enhanced animated background emojis */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          {[...Array(100)].map((_, i) => {
-            const emojis = ['💜', '🩵', '🥳', '💖', '🌸', '🦋', '🧡', '💛', '☺️', '🦄', '🫶🏾', '💚'];
+          {[...Array(200)].map((_, i) => {
+            const emojis = ['💜', '🩵', '🥳', '💖', '🌸', '🍬', '🦋', '🧡', '💛', '☺️', '🦄', '💚', '🫧', '🍭'];
             const colors = ['#fbcfe8', '#e9d5ff', '#d1fae5', '#fef9c3', '#fde68a', '#fcd34d', '#a5f3fc', '#c4b5fd'];
             return (
               <div
@@ -244,9 +244,9 @@ const VibeVault = () => {
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  animation: `sparkle ${2 + Math.random() * 5}s ease-in-out infinite`,
+                  animation: `float ${3 + Math.random() * 3}s ease-in-out infinite`,
                   animationDelay: `${Math.random() * 4}s`,
-                  fontSize: `${10 + Math.random() * 14}px`,
+                  fontSize: `${20 + Math.random() * 30}px`,
                   opacity: 0.4 + Math.random() * 0.6,
                   color: colors[Math.floor(Math.random() * colors.length)]
                 }}
@@ -414,7 +414,7 @@ const VibeVault = () => {
                   animation: 'gradientShift 3s ease-in-out infinite'
                 }}
               >
-                VibeVault
+                BubblegumBytes
               </span>
               <span 
                 className="absolute inset-0 text-6xl md:text-8xl font-bold"
@@ -428,7 +428,7 @@ const VibeVault = () => {
                   zIndex: '-1'
                 }}
               >
-                VibeVault
+                BubblegumBytes
               </span>
             </h1>
             <p className="text-purple-600 text-lg mt-4 font-medium">Your magical digital diary ✨</p>
@@ -627,4 +627,4 @@ const VibeVault = () => {
   );
 };
 
-export default VibeVault;
+export default BubblegumBytes;
